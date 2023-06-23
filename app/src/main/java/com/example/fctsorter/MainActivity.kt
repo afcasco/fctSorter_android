@@ -13,8 +13,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import java.util.regex.Pattern
 
+const val ADDRESS = 2;
+const val NAME = 0;
+const val CITY = 4;
+const val ZIP_CODE = 3;
+const val PHONE = 5;
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         data.map { row->row.split(",") }
             .filter { row -> pattern.matcher(row[3]).matches() }
             .filter { row -> row[3].startsWith(cpStart) }
-            .map { row -> Empresa(row[0],row[4],row[3],row[5],row[2]) }
+            .map { row -> Empresa(row[NAME],row[CITY],row[ZIP_CODE],row[PHONE],row[ADDRESS]) }
             .forEach(System.out::println)
 
         val btnZipCode: Button = findViewById(R.id.btnZipCode)
